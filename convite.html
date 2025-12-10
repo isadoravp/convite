@@ -16,26 +16,18 @@
     justify-content: center;
     background: radial-gradient(circle at 50% 50%, #ffc900, rgba(168, 51, 33, 0.3), #00498e);
     position: relative;
+    font-family: 'Arial', sans-serif;
   }
 
-  .iframe-container {
-    position: relative;
-    width: 90%;
-    max-width: 800px;
-    padding-top: 140.9524%; /* mantém proporção do Canva */
-    overflow: hidden;
+  /* Carta como imagem, responsiva */
+  .carta {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
     border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    position: relative;
     z-index: 1;
-  }
-
-  .iframe-container iframe {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    border: none;
   }
 
   /* Partículas mágicas */
@@ -65,18 +57,76 @@
       opacity: 0;
     }
   }
+
+  /* Botão flutuante */
+  .btn-modal {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 12px 20px;
+    background: #f17ea1;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    z-index: 10;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    font-size: 16px;
+  }
+
+  /* Modal */
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 20;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+    align-items: center;
+    justify-content: center;
+  }
+
+  .modal-content {
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    max-width: 90%;
+    max-height: 90%;
+    overflow-y: auto;
+    position: relative;
+  }
+
+  .close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 28px;
+    cursor: pointer;
+  }
 </style>
 </head>
 <body>
- 
-<div class="iframe-container">
-  <iframe loading="lazy" 
-    src="https://www.canva.com/design/DAG7DM2hqyw/lbjoWEo7P_eHs9Mra1gu2g/view?embed" 
-    allowfullscreen>
-  </iframe>
+
+<img class="carta" src="assets/carta.png" alt="Carta de convite">
+
+<!-- Botão e Modal -->
+<button class="btn-modal">Informações</button>
+
+<div class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h2>Detalhes da Festa</h2>
+    <p>Local: Salão de Festas XYZ</p>
+    <p>Data: 25/12/2025</p>
+    <p>Horário: 19h</p>
+    <p>RSVP: contato@exemplo.com</p>
+  </div>
 </div>
 
 <script>
+  // Partículas cinematográficas
   const numGlitters = 180;
   const body = document.body;
 
@@ -99,6 +149,15 @@
 
     body.appendChild(glitter);
   }
+
+  // Modal
+  const modal = document.querySelector('.modal');
+  const btn = document.querySelector('.btn-modal');
+  const span = document.querySelector('.close');
+
+  btn.onclick = () => modal.style.display = 'flex';
+  span.onclick = () => modal.style.display = 'none';
+  window.onclick = e => { if(e.target === modal) modal.style.display = 'none'; }
 </script>
 
 </body>
