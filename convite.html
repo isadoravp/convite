@@ -26,19 +26,34 @@ html, body {
   border-radius: 12px;
   box-shadow: 0 4px 20px rgba(0,0,0,0.3);
   position: relative;
-  z-index: 1;
+  z-index: 5; /* acima das partículas */
 }
 
-.glitter {
+.glitter, .star, .petala {
   position: absolute;
   border-radius: 50%;
   pointer-events: none;
+  z-index: 2;
+  opacity: 0.7;
+}
+
+/* Partículas de Glitter */
+.glitter {
   background: radial-gradient(circle, #f17ea1, #ffd700);
   animation-name: floatSpiral;
   animation-iteration-count: infinite;
   animation-timing-function: ease-in-out;
-  z-index: 2;
-  opacity: 0.7;
+}
+
+/* Estrelas */
+.star {
+  width: 2px;
+  height: 2px;
+  background: white;
+  opacity: 0.8;
+  border-radius: 50%;
+  animation-name: starTwinkle;
+  animation-iteration-count: infinite;
 }
 
 @keyframes floatSpiral {
@@ -47,6 +62,31 @@ html, body {
   100% { transform: translate(calc(var(--dx)+60px), -400px) scale(0) rotate(360deg); opacity: 0; }
 }
 
+@keyframes starTwinkle {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.5); }
+}
+
+/* Pétalas / rosas voando */
+.petala {
+  width: 15px;
+  height: 15px;
+  background-image: url('assets/petala.png'); /* PNG transparente da pétala/rosa */
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: 0.9;
+  animation-name: petalaFly;
+  animation-iteration-count: infinite;
+}
+
+@keyframes petalaFly {
+  0% { transform: translate(0,0) rotate(0deg) scale(0.8); opacity: 0; }
+  10% { opacity: 1; }
+  50% { transform: translate(calc(var(--dx)+50px), -300px) rotate(180deg) scale(1); }
+  100% { transform: translate(calc(var(--dx)+100px), -600px) rotate(360deg) scale(0.5); opacity: 0; }
+}
+
+/* Botão de Informações */
 .btn-modal {
   position: fixed;
   bottom: 20px;
@@ -62,6 +102,7 @@ html, body {
   font-size: 16px;
 }
 
+/* Modais */
 .modal, .sub-modal {
   display: none;
   position: fixed;
@@ -161,62 +202,72 @@ html, body {
 </div>
 
 <script>
-  // Partículas CINEMÁTICAS (igual página 1)
-  const numGlitters = 180;
-  const body = document.body;
+// --- PARTICULAS CINEMÁTICAS ---
+const body = document.body;
 
-  for (let i = 0; i < numGlitters; i++) {
-    const glitter = document.createElement('div');
-    glitter.classList.add('glitter');
+// Glitter
+for(let i=0; i<180; i++){
+  const glitter = document.createElement('div');
+  glitter.classList.add('glitter');
+  const size = 1 + Math.random()*3;
+  glitter.style.width = glitter.style.height = size+'px';
+  glitter.style.left = Math.random()*100+'%';
+  glitter.style.top = '100%';
+  glitter.style.animationDuration = (4 + Math.random()*3)+'s';
+  glitter.style.opacity = 0.4 + Math.random()*0.6;
+  glitter.style.transform = `scale(${0.4+Math.random()*0.6}) rotate(${Math.random()*360}deg)`;
+  glitter.style.setProperty('--dx', (Math.random()-0.5)*200+'px');
+  glitter.style.animationDelay = Math.random()*5+'s';
+  body.appendChild(glitter);
+}
 
-    const size = 1 + Math.random() * 3;
-    glitter.style.width = size + 'px';
-    glitter.style.height = size + 'px';
-    glitter.style.left = Math.random() * 100 + '%';
-    glitter.style.top = '100%'; // começa de baixo
+// Estrelas
+for(let i=0;i<50;i++){
+  const star = document.createElement('div');
+  star.classList.add('star');
+  star.style.left = Math.random()*100+'%';
+  star.style.top = Math.random()*100+'%';
+  star.style.animationDuration = (2 + Math.random()*3)+'s';
+  star.style.width = star.style.height = (1 + Math.random()*2)+'px';
+  body.appendChild(star);
+}
 
-    glitter.style.animationDuration = (4 + Math.random() * 3) + 's'; // mais rápido
-    glitter.style.opacity = 0.4 + Math.random() * 0.6;
-    glitter.style.transform = `scale(${0.4 + Math.random() * 0.6}) rotate(${Math.random()*360}deg)`;
-    glitter.style.setProperty('--dx', (Math.random() - 0.5) * 200 + 'px'); // curva mais visível
-    glitter.style.animationDelay = Math.random() * 5 + 's';
+// Pétalas/Rosas
+for(let i=0;i<30;i++){
+  const petala = document.createElement('div');
+  petala.classList.add('petala');
+  petala.style.left = Math.random()*100+'%';
+  petala.style.top = '100%';
+  petala.style.animationDuration = (6 + Math.random()*4)+'s';
+  petala.style.setProperty('--dx', (Math.random()-0.5)*300+'px');
+  body.appendChild(petala);
+}
 
-    body.appendChild(glitter);
+// --- MODAIS ---
+const modalPrincipal = document.getElementById('modalPrincipal');
+document.querySelector('.btn-modal').onclick = () => modalPrincipal.style.display = 'flex';
+
+// Botões principais
+document.getElementById('dressCode').onclick = () => document.getElementById('modalDress').style.display = 'flex';
+document.getElementById('verRota').onclick = () => window.open("https://maps.app.goo.gl/9Ujs9UPoccGrVMJb8", "_blank");
+document.getElementById('confirmePresenca').onclick = () => window.open("https://wa.me/5551992226662?text=Olá,%20confirmo%20minha%20presença%20no%20evento!", "_blank");
+document.getElementById('presentearIsadora').onclick = () => document.getElementById('modalPresentes').style.display = 'flex';
+
+// Fechar modais
+document.querySelectorAll('.close').forEach(btn=>{
+  btn.onclick = ()=>{
+    const target = btn.dataset.close;
+    if(target) document.getElementById(target).style.display = 'none';
+    else btn.parentElement.parentElement.style.display = 'none';
   }
+});
 
-  // Modal principal
-  const modalPrincipal = document.getElementById('modalPrincipal');
-  document.querySelector('.btn-modal').onclick = () => modalPrincipal.style.display = 'flex';
-
-  // Botões principais
-  document.getElementById('dressCode').onclick = () => {
-    document.getElementById('modalDress').style.display = 'flex';
-  }
-  document.getElementById('verRota').onclick = () => {
-    window.open("https://maps.app.goo.gl/9Ujs9UPoccGrVMJb8", "_blank");
-  }
-  document.getElementById('confirmePresenca').onclick = () => {
-    window.open("https://wa.me/5551992226662?text=Olá,%20confirmo%20minha%20presença%20no%20evento!", "_blank");
-  }
-  document.getElementById('presentearIsadora').onclick = () => {
-    document.getElementById('modalPresentes').style.display = 'flex';
-  }
-
-  // Fechar todos os modais
-  document.querySelectorAll('.close').forEach(btn => {
-    btn.onclick = () => {
-      const target = btn.dataset.close;
-      if(target) document.getElementById(target).style.display = 'none';
-      else btn.parentElement.parentElement.style.display = 'none';
-    }
+// Fechar clicando fora
+window.onclick = e => {
+  document.querySelectorAll('.modal, .sub-modal').forEach(modal=>{
+    if(e.target===modal) modal.style.display='none';
   });
-
-  // Fechar ao clicar fora
-  window.onclick = e => {
-    document.querySelectorAll('.modal, .sub-modal').forEach(modal => {
-      if (e.target === modal) modal.style.display = 'none';
-    });
-  }
+};
 </script>
 
 </body>
