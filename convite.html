@@ -29,23 +29,33 @@ html, body {
   z-index: 1;
 }
 
-.glitter {
-  position: absolute;
-  border-radius: 50%;
-  pointer-events: none;
-  background: radial-gradient(circle, #f17ea1, #ffd700);
-  animation-name: floatSpiral;
-  animation-iteration-count: infinite;
-  animation-timing-function: ease-in-out;
-  z-index: 2;
-  opacity: 0.7;
-}
+/* Partículas mágicas */
+  .glitter {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    background: radial-gradient(circle, #f17ea1, #ffd700);
+    animation-name: floatSpiral;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+    z-index: 2;
+    opacity: 0.7;
+  }
 
-@keyframes floatSpiral {
-  0% { transform: translate(0,0) scale(1) rotate(0deg); opacity: 1; }
-  50% { transform: translate(calc(var(--dx)+30px), -150px) scale(0.5) rotate(180deg); opacity: 0.6; }
-  100% { transform: translate(calc(var(--dx)+60px), -300px) scale(0) rotate(360deg); opacity: 0; }
-}
+  @keyframes floatSpiral {
+    0% {
+      transform: translate(0,0) scale(1) rotate(0deg);
+      opacity: 1;
+    }
+    50% {
+      transform: translate(calc(var(--dx) + 30px), -150px) scale(0.5) rotate(180deg);
+      opacity: 0.6;
+    }
+    100% {
+      transform: translate(calc(var(--dx) + 60px), -300px) scale(0) rotate(360deg);
+      opacity: 0;
+    }
+  }
 
 .btn-modal {
   position: fixed;
@@ -164,19 +174,24 @@ html, body {
   // Partículas
   const numGlitters = 180;
   const body = document.body;
+
   for (let i = 0; i < numGlitters; i++) {
     const glitter = document.createElement('div');
     glitter.classList.add('glitter');
+
     const size = 1 + Math.random() * 3;
     glitter.style.width = size + 'px';
     glitter.style.height = size + 'px';
+
     glitter.style.left = Math.random() * 100 + '%';
     glitter.style.top = Math.random() * 100 + '%';
+
     glitter.style.animationDuration = (4 + Math.random() * 5) + 's';
     glitter.style.opacity = Math.random() * 0.6 + 0.3;
     glitter.style.transform = `scale(${0.4 + Math.random() * 0.6}) rotate(${Math.random()*360}deg)`;
     glitter.style.setProperty('--dx', (Math.random() - 0.5) * 150 + 'px');
     glitter.style.animationDelay = Math.random() * 6 + 's';
+
     body.appendChild(glitter);
   }
 
