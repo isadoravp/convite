@@ -5,59 +5,43 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Convite Interativo</title>
   <style>
-    body {
-      font-family: 'Arial', sans-serif;
+    html, body {
       margin: 0;
-      height: 100vh;
       padding: 0;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-      background: radial-gradient(circle at 50% 50%, #ffc900, rgba(168, 51, 33, 0.3), #00498e),
-              url('assets/carta.png') no-repeat center center;
+      height: 100%;
+      width: 100%;
+      font-family: 'Arial', sans-serif;
+      overflow: hidden;
+      background: radial-gradient(circle at 50% 50%, #ffc900, rgba(168, 51, 33, 0.3), #00498e);
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('assets/carta.png') no-repeat center center;
       background-size: cover;
+      z-index: -1; /* envia para trás */
     }
 
     h1 {
       color: #fff;
-      margin-top: 2em;
       text-align: center;
-    }
-
-    .iframe-container {
-      position: relative;
-      width: 90%;
-      max-width: 800px;
-      padding-top: 140.9524%; /* mantém proporção original do Canva */
-      margin: 2em 0;
-      overflow: hidden;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-      transition: transform 0.3s ease;
-    }
-
-    .iframe-container:hover {
-      transform: scale(1.02);
-    }
-
-    .iframe-container iframe {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
-      border: none;
+      margin-top: 2em;
+      text-shadow: 0 2px 5px rgba(0,0,0,0.4);
     }
 
     .link-canva {
       color: #fff;
       text-decoration: none;
       font-weight: bold;
-      margin-bottom: 2em;
-      transition: color 0.3s;
+      margin-top: 1em;
       text-align: center;
+      display: block;
+      transition: color 0.3s;
     }
 
     .link-canva:hover {
@@ -68,16 +52,8 @@
 <body>
   <h1>Convite de 15 anos</h1>
 
-  <div class="iframe-container">
-    <iframe loading="lazy" 
-      src="https://www.canva.com/design/DAG7DM2hqyw/lbjoWEo7P_eHs9Mra1gu2g/view?embed" 
-      allowfullscreen>
-    </iframe>
-  </div>
-
   <a class="link-canva" href="https://www.canva.com/design/DAG7DM2hqyw/lbjoWEo7P_eHs9Mra1gu2g/view?utm_content=DAG7DM2hqyw&utm_campaign=designshare&utm_medium=embeds&utm_source=link" target="_blank" rel="noopener">
     Abrir no Canva
   </a>
-
 </body>
 </html>
