@@ -5,34 +5,29 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Meus 15</title>
 <style>
-html, body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: transparent; /* Nenhum quadrado de fundo */
-  overflow: hidden;
-  font-family: Arial, sans-serif;
-}
+  html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    background: radial-gradient(circle at 50% 50%, #ffc900, rgba(168, 51, 33, 0.3), #00498e);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    cursor: pointer; /* indica que é clicável */
+  }
 
-.carta {
-  max-width: 80%;
-  max-height: 80%;
-  object-fit: contain;
-  position: relative;
-  z-index: 1;
-  animation: float 4s ease-in-out infinite alternate;
-}
-
-/* Leve flutuação da carta */
-@keyframes float {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-15px); }
-  100% { transform: translateY(0px); }
-}
+  .carta {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    border-radius: 12px;
+    position: relative;
+    z-index: 1;
+  }
 
   /* Partículas mágicas */
   .glitter {
@@ -65,7 +60,7 @@ html, body {
 </head>
 <body>
 
-<img class="carta" src="assets/carta.png" alt="Carta de convite">
+<img class="carta" src="assets/big1.png" alt="Carta de convite">
 
 <script>
     //  partículas
