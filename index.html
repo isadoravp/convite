@@ -35,14 +35,27 @@ html, body {
   100% { transform: translateY(0px); }
 }
 
-/* Partículas mágicas circulando */
+/* Partículas mágicas */
 .glitter {
   position: absolute;
   border-radius: 50%;
   pointer-events: none;
   background: radial-gradient(circle, #f17ea1, #ffd700);
   z-index: 2;
-  opacity: 0.8;
+  opacity: 0.7;
+}
+
+/* Partículas subindo */
+.glitter-up {
+  animation-name: floatUp;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes floatUp {
+  0% { transform: translateY(0px) scale(1); opacity: 1; }
+  50% { transform: translateY(-120px) scale(0.5); opacity: 0.6; }
+  100% { transform: translateY(-240px) scale(0); opacity: 0; }
 }
 </style>
 </head>
@@ -51,14 +64,14 @@ html, body {
 <img class="carta" src="assets/big1.png" alt="Carta de convite">
 
 <script>
-const numGlitters = 120; // menos partículas para suavidade
 const body = document.body;
 const carta = document.querySelector('.carta');
-const cartaRect = carta.getBoundingClientRect();
 const centerX = window.innerWidth / 2;
 const centerY = window.innerHeight / 2;
 
-for (let i = 0; i < numGlitters; i++) {
+// Partículas circulando ao redor da carta
+const numCircle = 100;
+for (let i = 0; i < numCircle; i++) {
   const glitter = document.createElement('div');
   glitter.classList.add('glitter');
 
@@ -66,7 +79,6 @@ for (let i = 0; i < numGlitters; i++) {
   glitter.style.width = size + 'px';
   glitter.style.height = size + 'px';
 
-  // posição inicial aleatória ao redor da carta
   const angle = Math.random() * 2 * Math.PI;
   const radius = 80 + Math.random() * 60;
   glitter.dataset.angle = angle;
@@ -79,9 +91,28 @@ for (let i = 0; i < numGlitters; i++) {
   body.appendChild(glitter);
 }
 
-// animação circular
-function animate() {
-  const glitters = document.querySelectorAll('.glitter');
+// Partículas subindo tipo glitter
+const numUp = 80;
+for (let i = 0; i < numUp; i++) {
+  const glitter = document.createElement('div');
+  glitter.classList.add('glitter', 'glitter-up');
+
+  const size = 1 + Math.random() * 3;
+  glitter.style.width = size + 'px';
+  glitter.style.height = size + 'px';
+
+  glitter.style.left = Math.random() * window.innerWidth + 'px';
+  glitter.style.top = window.innerHeight + 'px';
+
+  glitter.style.animationDuration = (4 + Math.random() * 5) + 's';
+  glitter.style.animationDelay = Math.random() * 6 + 's';
+
+  body.appendChild(glitter);
+}
+
+// Função de animação circular
+function animateCircle() {
+  const glitters = document.querySelectorAll('.glitter:not(.glitter-up)');
   const centerX = window.innerWidth / 2;
   const centerY = window.innerHeight / 2;
 
@@ -97,12 +128,12 @@ function animate() {
     glitter.style.top = (centerY + radius * Math.sin(angle)) + 'px';
   });
 
-  requestAnimationFrame(animate);
+  requestAnimationFrame(animateCircle);
 }
 
-animate();
+animateCircle();
 
-// clique na carta leva para a página dois
+// Clique na carta leva para a página dois
 carta.addEventListener('click', () => {
   window.location.href = 'convite.html';
 });
