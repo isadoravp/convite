@@ -24,7 +24,6 @@ html, body {
   max-width: 80%;
   max-height: 80%;
   object-fit: contain;
-  border-radius: 12px;
   position: relative;
   z-index: 1;
   animation: float 4s ease-in-out infinite alternate;
@@ -37,22 +36,23 @@ html, body {
   100% { transform: translateY(0px); }
 }
 
-/* Partículas (estrelas/faíscas) */
+/* Partículas */
 .glitter {
   position: absolute;
-  width: 2px;
-  height: 2px;
   border-radius: 50%;
   pointer-events: none;
   background: radial-gradient(circle, #f17ea1, #ffd700);
-  animation: sparkle 4s ease-in-out infinite;
-  opacity: 0.8;
+  animation-name: sparkle;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
   z-index: 2;
+  opacity: 0.7;
 }
 
 @keyframes sparkle {
-  0%, 100% { transform: translate(0,0) scale(1); opacity: 0.3; }
+  0% { transform: translate(0,0) scale(1); opacity: 0.3; }
   50% { transform: translate(calc(var(--dx) + 30px), -120px) scale(1.2); opacity: 0.9; }
+  100% { transform: translate(calc(var(--dx) + 60px), -240px) scale(0.5); opacity: 0; }
 }
 </style>
 </head>
@@ -68,15 +68,14 @@ for (let i = 0; i < numGlitters; i++) {
   const glitter = document.createElement('div');
   glitter.classList.add('glitter');
 
-  const size = 1 + Math.random() * 2.5;
+  const size = 1 + Math.random() * 3;
   glitter.style.width = size + 'px';
   glitter.style.height = size + 'px';
 
   glitter.style.left = Math.random() * 100 + '%';
   glitter.style.top = Math.random() * 100 + '%';
 
-  glitter.style.animationDuration = (3 + Math.random() * 4) + 's';
-  glitter.style.opacity = Math.random() * 0.6 + 0.2;
+  glitter.style.animationDuration = (4 + Math.random() * 5) + 's';
   glitter.style.transform = `scale(${0.4 + Math.random() * 0.6}) rotate(${Math.random()*360}deg)`;
   glitter.style.setProperty('--dx', (Math.random() - 0.5) * 100 + 'px');
   glitter.style.animationDelay = Math.random() * 6 + 's';
