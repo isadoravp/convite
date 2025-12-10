@@ -5,114 +5,114 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Meus 15</title>
 <style>
-  html, body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    width: 100%;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: radial-gradient(circle at 50% 50%, #ffc900, rgba(168, 51, 33, 0.3), #00498e);
-    position: relative;
-    font-family: 'Arial', sans-serif;
-  }
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at 50% 50%, #ffc900, rgba(168, 51, 33, 0.3), #00498e);
+  position: relative;
+  font-family: 'Arial', sans-serif;
+}
 
-  .carta {
-    max-width: 90%;
-    max-height: 90%;
-    object-fit: contain;
-    border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-    position: relative;
-    z-index: 1;
-  }
+.carta {
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  position: relative;
+  z-index: 1;
+}
 
-  .glitter {
-    position: absolute;
-    border-radius: 50%;
-    pointer-events: none;
-    background: radial-gradient(circle, #f17ea1, #ffd700);
-    animation-name: floatSpiral;
-    animation-iteration-count: infinite;
-    animation-timing-function: ease-in-out;
-    z-index: 2;
-    opacity: 0.7;
-  }
+.glitter {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  background: radial-gradient(circle, #f17ea1, #ffd700);
+  animation-name: floatSpiral;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+  z-index: 2;
+  opacity: 0.7;
+}
 
-  @keyframes floatSpiral {
-    0% { transform: translate(0,0) scale(1) rotate(0deg); opacity: 1; }
-    50% { transform: translate(calc(var(--dx)+30px), -150px) scale(0.5) rotate(180deg); opacity: 0.6; }
-    100% { transform: translate(calc(var(--dx)+60px), -300px) scale(0) rotate(360deg); opacity: 0; }
-  }
+@keyframes floatSpiral {
+  0% { transform: translate(0,0) scale(1) rotate(0deg); opacity: 1; }
+  50% { transform: translate(calc(var(--dx)+30px), -150px) scale(0.5) rotate(180deg); opacity: 0.6; }
+  100% { transform: translate(calc(var(--dx)+60px), -300px) scale(0) rotate(360deg); opacity: 0; }
+}
 
-  .btn-modal {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    padding: 12px 20px;
-    background: #f17ea1;
-    color: #fff;
-    border: none;
-    border-radius: 8px;
-    z-index: 10;
-    cursor: pointer;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-    font-size: 16px;
-  }
+.btn-modal {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 12px 20px;
+  background: #f17ea1;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  z-index: 10;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  font-size: 16px;
+}
 
-  .modal, .sub-modal {
-    display: none;
-    position: fixed;
-    z-index: 20;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.6);
-    align-items: center;
-    justify-content: center;
-  }
+.modal, .sub-modal {
+  display: none;
+  position: fixed;
+  z-index: 20;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  align-items: center;
+  justify-content: center;
+}
 
-  .modal-content, .sub-modal-content {
-    background: #fff;
-    padding: 20px;
-    border-radius: 12px;
-    max-width: 90%;
-    max-height: 90%;
-    overflow-y: auto;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-  }
+.modal-content, .sub-modal-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  max-width: 90%;
+  max-height: 90%;
+  overflow-y: auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
 
-  .close {
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    font-size: 28px;
-    cursor: pointer;
-  }
+.close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 28px;
+  cursor: pointer;
+}
 
-  .modal-button {
-    padding: 12px 20px;
-    background: #f17ea1;
-    color: #fff;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 16px;
-    text-align: left;
-    display: block;
-    width: 100%;
-  }
+.modal-button {
+  padding: 12px 20px;
+  background: #f17ea1;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  text-align: left;
+  display: block;
+  width: 100%;
+}
 
-  .modal-button:hover {
-    background: #ffd700;
-    color: #000;
-  }
+.modal-button:hover {
+  background: #ffd700;
+  color: #000;
+}
 </style>
 </head>
 <body>
@@ -139,6 +139,9 @@
     <h3>Código de Vestimenta</h3>
     <ul>
       <li>Esporte fino</li>
+      <li>Vestidos longos / salto alto</li>
+      <li>Ternos para rapazes</li>
+      <li>Acessórios elegantes</li>
     </ul>
   </div>
 </div>
@@ -195,7 +198,7 @@
     document.getElementById('modalPresentes').style.display = 'flex';
   }
 
-  // Fechar modais e sub-modais
+  // Fechar todos os modais
   document.querySelectorAll('.close').forEach(btn => {
     btn.onclick = () => {
       const target = btn.dataset.close;
@@ -204,6 +207,7 @@
     }
   });
 
+  // Fechar ao clicar fora
   window.onclick = e => {
     document.querySelectorAll('.modal, .sub-modal').forEach(modal => {
       if (e.target === modal) modal.style.display = 'none';
