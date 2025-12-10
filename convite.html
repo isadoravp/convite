@@ -209,9 +209,9 @@
   window.onclick = e => { if(e.target === modal) modal.style.display = 'none'; }
 
   // Ações dos botões
-  document.getElementById('dressCode').onclick = () => {
-    alert("🕺Esporte fino 💃"); // exemplo
-  }
+document.getElementById('dressCode').onclick = () => {
+  document.getElementById('modalDress').style.display = 'flex';
+}
 
   document.getElementById('verRota').onclick = () => {
     window.open("https://maps.app.goo.gl/9Ujs9UPoccGrVMJb8", "_blank");
