@@ -55,22 +55,31 @@
       color: #f0e68c;
     }
 
-    /* Partículas de glitter */
+    /* Glitter mágico */
     .glitter {
       position: absolute;
-      width: 4px;
-      height: 4px;
-      background: radial-gradient(circle, #f17ea1, rgba(241,126,161,0));
       border-radius: 50%;
       pointer-events: none;
-      animation: float 5s infinite linear;
+      background: radial-gradient(circle, rgba(241,126,161,1), rgba(241,126,161,0));
+      animation-name: floatMagic;
+      animation-iteration-count: infinite;
+      animation-timing-function: linear;
       z-index: 3;
     }
 
-    @keyframes float {
-      0% { transform: translateY(0) translateX(0) scale(1); opacity: 1; }
-      50% { transform: translateY(-300px) translateX(50px) scale(0.5); opacity: 0.6; }
-      100% { transform: translateY(-600px) translateX(100px) scale(0); opacity: 0; }
+    @keyframes floatMagic {
+      0% {
+        transform: translateY(0) translateX(0) scale(1);
+        opacity: 1;
+      }
+      50% {
+        transform: translateY(-200px) translateX(50px) scale(0.5);
+        opacity: 0.6;
+      }
+      100% {
+        transform: translateY(-400px) translateX(100px) scale(0);
+        opacity: 0;
+      }
     }
   </style>
 </head>
@@ -83,19 +92,22 @@
     Abrir no Canva
   </a>
 
-  <!-- Partículas de glitter -->
   <script>
-    const numGlitters = 50;
+    const numGlitters = 120; // mais partículas para efeito mágico
+    const body = document.body;
 
-    for(let i = 0; i < numGlitters; i++){
+    for (let i = 0; i < numGlitters; i++) {
       const glitter = document.createElement('div');
       glitter.classList.add('glitter');
+      const size = 2 + Math.random() * 4; // partículas de tamanhos variados
+      glitter.style.width = size + 'px';
+      glitter.style.height = size + 'px';
       glitter.style.left = Math.random() * 100 + '%';
       glitter.style.top = Math.random() * 100 + '%';
-      glitter.style.animationDuration = (3 + Math.random() * 4) + 's';
-      glitter.style.width = (2 + Math.random() * 3) + 'px';
-      glitter.style.height = glitter.style.width;
-      document.body.appendChild(glitter);
+      glitter.style.animationDuration = (4 + Math.random() * 4) + 's';
+      glitter.style.opacity = Math.random();
+      glitter.style.transform = `scale(${0.5 + Math.random()})`;
+      body.appendChild(glitter);
     }
   </script>
 </body>
