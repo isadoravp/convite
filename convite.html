@@ -127,6 +127,9 @@ html, body {
 </head>
 <body>
 
+<!-- Música de fundo -->
+<audio id="bgMusic" src="assets/audio/musica.mp3" autoplay loop muted></audio>
+
 <img class="carta" src="assets/convite.png" alt="Carta de convite">
 
 <button class="btn-modal">Informações</button>
@@ -227,5 +230,17 @@ html, body {
   }
 </script>
 
+<script>
+  window.addEventListener("DOMContentLoaded", () => {
+    const audio = document.getElementById("bgMusic");
+
+    // Tira o mute após carregar (permite autoplay no Chrome sem bloquear)
+    setTimeout(() => {
+      audio.muted = false;
+      audio.volume = 0.5; // volume inicial
+    }, 500);
+  });
+</script>
+  
 </body>
 </html>
