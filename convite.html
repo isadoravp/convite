@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Meus 15 - Convite</title>
+<title>Meus 15</title>
 <style>
 html, body {
   margin: 0;
@@ -26,60 +26,27 @@ html, body {
   border-radius: 12px;
   box-shadow: 0 4px 20px rgba(0,0,0,0.3);
   position: relative;
-  z-index: 5;
+  z-index: 1;
 }
 
-.glitter, .star, .petala {
-  position: absolute;
-  pointer-events: none;
-  z-index: 2;
-}
-
-/* Glitter */
 .glitter {
+  position: absolute;
   border-radius: 50%;
+  pointer-events: none;
   background: radial-gradient(circle, #f17ea1, #ffd700);
   animation-name: floatSpiral;
   animation-iteration-count: infinite;
   animation-timing-function: ease-in-out;
-}
-
-/* Estrelas */
-.star {
-  width: 2px;
-  height: 2px;
-  border-radius: 50%;
-  background: white;
-  opacity: 0.8;
-  animation-name: starTwinkle;
-  animation-iteration-count: infinite;
+  z-index: 2;
+  opacity: 0.7;
 }
 
 @keyframes floatSpiral {
   0% { transform: translate(0,0) scale(1) rotate(0deg); opacity: 1; }
-  50% { transform: translate(calc(var(--dx)+30px), -200px) scale(0.5) rotate(180deg); opacity: 0.6; }
-  100% { transform: translate(calc(var(--dx)+60px), -400px) scale(0) rotate(360deg); opacity: 0; }
+  50% { transform: translate(calc(var(--dx)+30px), -150px) scale(0.5) rotate(180deg); opacity: 0.6; }
+  100% { transform: translate(calc(var(--dx)+60px), -300px) scale(0) rotate(360deg); opacity: 0; }
 }
 
-@keyframes starTwinkle {
-  0%, 100% { opacity: 0.5; transform: scale(1); }
-  50% { opacity: 1; transform: scale(1.5); }
-}
-
-/* Pétalas */
-.petala {
-  width: 15px;
-  height: 15px;
-  background-image: url('assets/petala.png');
-  background-size: contain;
-  background-repeat: no-repeat;
-  animation-name: floatSpiral;
-  animation-iteration-count: infinite;
-  animation-timing-function: ease-in-out;
-  opacity: 0.9;
-}
-
-/* Botão de informações */
 .btn-modal {
   position: fixed;
   bottom: 20px;
@@ -95,7 +62,6 @@ html, body {
   font-size: 16px;
 }
 
-/* Modais */
 .modal, .sub-modal {
   display: none;
   position: fixed;
@@ -195,72 +161,58 @@ html, body {
 </div>
 
 <script>
-// --- PARTICULAS CINEMÁTICAS ---
-const body = document.body;
-
-// Glitter
-for(let i=0; i<180; i++){
-  const glitter = document.createElement('div');
-  glitter.classList.add('glitter');
-  const size = 1 + Math.random()*3;
-  glitter.style.width = glitter.style.height = size+'px';
-  glitter.style.left = Math.random()*100+'%';
-  glitter.style.top = Math.random()*100+'%';
-  glitter.style.animationDuration = (4 + Math.random()*5)+'s';
-  glitter.style.opacity = Math.random()*0.6 + 0.3;
-  glitter.style.transform = `scale(${0.4+Math.random()*0.6}) rotate(${Math.random()*360}deg)`;
-  glitter.style.setProperty('--dx', (Math.random()-0.5)*150+'px');
-  glitter.style.animationDelay = Math.random()*6+'s';
-  body.appendChild(glitter);
-}
-
-// Estrelas
-for(let i=0;i<50;i++){
-  const star = document.createElement('div');
-  star.classList.add('star');
-  star.style.left = Math.random()*100+'%';
-  star.style.top = Math.random()*100+'%';
-  star.style.animationDuration = (2 + Math.random()*3)+'s';
-  star.style.width = star.style.height = (1 + Math.random()*2)+'px';
-  body.appendChild(star);
-}
-
-// Pétalas / rosas
-for(let i=0;i<30;i++){
-  const petala = document.createElement('div');
-  petala.classList.add('petala');
-  petala.style.left = Math.random()*100+'%';
-  petala.style.top = '100%';
-  petala.style.animationDuration = (6 + Math.random()*4)+'s';
-  petala.style.setProperty('--dx', (Math.random()-0.5)*200+'px');
-  body.appendChild(petala);
-}
-
-// --- MODAIS ---
-const modalPrincipal = document.getElementById('modalPrincipal');
-document.querySelector('.btn-modal').onclick = () => modalPrincipal.style.display = 'flex';
-
-// Botões principais
-document.getElementById('dressCode').onclick = () => document.getElementById('modalDress').style.display = 'flex';
-document.getElementById('verRota').onclick = () => window.open("https://maps.app.goo.gl/9Ujs9UPoccGrVMJb8", "_blank");
-document.getElementById('confirmePresenca').onclick = () => window.open("https://wa.me/5551992226662?text=Olá,%20confirmo%20minha%20presença%20no%20evento!", "_blank");
-document.getElementById('presentearIsadora').onclick = () => document.getElementById('modalPresentes').style.display = 'flex';
-
-// Fechar modais
-document.querySelectorAll('.close').forEach(btn=>{
-  btn.onclick = ()=>{
-    const target = btn.dataset.close;
-    if(target) document.getElementById(target).style.display = 'none';
-    else btn.parentElement.parentElement.style.display = 'none';
+  // Partículas
+  const numGlitters = 180;
+  const body = document.body;
+  for (let i = 0; i < numGlitters; i++) {
+    const glitter = document.createElement('div');
+    glitter.classList.add('glitter');
+    const size = 1 + Math.random() * 3;
+    glitter.style.width = size + 'px';
+    glitter.style.height = size + 'px';
+    glitter.style.left = Math.random() * 100 + '%';
+    glitter.style.top = Math.random() * 100 + '%';
+    glitter.style.animationDuration = (4 + Math.random() * 5) + 's';
+    glitter.style.opacity = Math.random() * 0.6 + 0.3;
+    glitter.style.transform = `scale(${0.4 + Math.random() * 0.6}) rotate(${Math.random()*360}deg)`;
+    glitter.style.setProperty('--dx', (Math.random() - 0.5) * 150 + 'px');
+    glitter.style.animationDelay = Math.random() * 6 + 's';
+    body.appendChild(glitter);
   }
-});
 
-// Fechar clicando fora
-window.onclick = e => {
-  document.querySelectorAll('.modal, .sub-modal').forEach(modal=>{
-    if(e.target===modal) modal.style.display='none';
+  // Modal principal
+  const modalPrincipal = document.getElementById('modalPrincipal');
+  document.querySelector('.btn-modal').onclick = () => modalPrincipal.style.display = 'flex';
+
+  // Botões principais
+  document.getElementById('dressCode').onclick = () => {
+    document.getElementById('modalDress').style.display = 'flex';
+  }
+  document.getElementById('verRota').onclick = () => {
+    window.open("https://maps.app.goo.gl/9Ujs9UPoccGrVMJb8", "_blank");
+  }
+  document.getElementById('confirmePresenca').onclick = () => {
+    window.open("https://wa.me/5551992226662?text=Olá,%20confirmo%20minha%20presença%20no%20evento!", "_blank");
+  }
+  document.getElementById('presentearIsadora').onclick = () => {
+    document.getElementById('modalPresentes').style.display = 'flex';
+  }
+
+  // Fechar todos os modais
+  document.querySelectorAll('.close').forEach(btn => {
+    btn.onclick = () => {
+      const target = btn.dataset.close;
+      if(target) document.getElementById(target).style.display = 'none';
+      else btn.parentElement.parentElement.style.display = 'none';
+    }
   });
-};
+
+  // Fechar ao clicar fora
+  window.onclick = e => {
+    document.querySelectorAll('.modal, .sub-modal').forEach(modal => {
+      if (e.target === modal) modal.style.display = 'none';
+    });
+  }
 </script>
 
 </body>
