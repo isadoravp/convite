@@ -11,12 +11,12 @@ html, body {
   height: 100%;
   width: 100%;
   overflow: hidden;
-  background: radial-gradient(circle at 50% 50%, #ffc900, rgba(168, 51, 33, 0.3), #00498e);
+  background: transparent; /* fundo transparente */
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
-  cursor: pointer; /* indica que é clicável */
+  cursor: pointer;
 }
 
 /* Carta flutuante */
@@ -24,7 +24,6 @@ html, body {
   max-width: 80%;
   max-height: 80%;
   object-fit: contain;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
   border-radius: 12px;
   position: relative;
   z-index: 1;
@@ -38,7 +37,7 @@ html, body {
   100% { transform: translateY(0px); }
 }
 
-/* Partículas mágicas (estrelas/faíscas) */
+/* Partículas (estrelas/faíscas) */
 .glitter {
   position: absolute;
   width: 2px;
@@ -69,7 +68,7 @@ for (let i = 0; i < numGlitters; i++) {
   const glitter = document.createElement('div');
   glitter.classList.add('glitter');
 
-  const size = 1 + Math.random() * 2.5; // tamanho reduzido para mobile
+  const size = 1 + Math.random() * 2.5;
   glitter.style.width = size + 'px';
   glitter.style.height = size + 'px';
 
