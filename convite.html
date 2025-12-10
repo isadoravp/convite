@@ -29,23 +29,33 @@ html, body {
   z-index: 1;
 }
 
-.glitter {
-  position: absolute;
-  border-radius: 50%;
-  pointer-events: none;
-  background: radial-gradient(circle, #f17ea1, #ffd700);
-  animation-name: floatSpiral;
-  animation-iteration-count: infinite;
-  animation-timing-function: ease-in-out;
-  z-index: 2;
-  opacity: 0.7;
-}
+/* Partículas mágicas */
+  .glitter {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    background: radial-gradient(circle, #f17ea1, #ffd700);
+    animation-name: floatSpiral;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+    z-index: 2;
+    opacity: 0.7;
+  }
 
 @keyframes floatSpiral {
-  0% { transform: translate(0,0) scale(1) rotate(0deg); opacity: 1; }
-  50% { transform: translate(calc(var(--dx)+30px), -200px) scale(0.5) rotate(180deg); opacity: 0.6; }
-  100% { transform: translate(calc(var(--dx)+60px), -400px) scale(0) rotate(360deg); opacity: 0; }
-}
+    0% {
+      transform: translate(0,0) scale(1) rotate(0deg);
+      opacity: 1;
+    }
+    50% {
+      transform: translate(calc(var(--dx) + 30px), -150px) scale(0.5) rotate(180deg);
+      opacity: 0.6;
+    }
+    100% {
+      transform: translate(calc(var(--dx) + 60px), -300px) scale(0) rotate(360deg);
+      opacity: 0;
+    }
+  }
 
 .btn-modal {
   position: fixed;
