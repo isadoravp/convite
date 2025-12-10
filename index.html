@@ -22,13 +22,11 @@ html, body {
 /* Carta flutuante */
 .carta {
   max-width: 80%;
-  height: auto; /* mantém proporção */
-  display: block;
-  border-radius: 12px;
+  max-height: 80%;
+  object-fit: contain;
   position: relative;
   z-index: 1;
   animation: float 4s ease-in-out infinite alternate;
-  box-shadow: none; /* remove o contorno que podia gerar a linha */
 }
 
 @keyframes float {
