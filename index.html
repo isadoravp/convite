@@ -49,13 +49,13 @@ html, body {
 .glitter-up {
   animation-name: floatUp;
   animation-iteration-count: infinite;
-  animation-timing-function: ease-in-out;
+  animation-timing-function: linear;
 }
 
 @keyframes floatUp {
   0% { transform: translateY(0px) scale(1); opacity: 1; }
-  50% { transform: translateY(-120px) scale(0.5); opacity: 0.6; }
-  100% { transform: translateY(-240px) scale(0); opacity: 0; }
+  50% { transform: translateY(-300px) scale(0.5); opacity: 0.6; }
+  100% { transform: translateY(-600px) scale(0); opacity: 0; }
 }
 </style>
 </head>
@@ -83,7 +83,7 @@ for (let i = 0; i < numCircle; i++) {
   const radius = 80 + Math.random() * 60;
   glitter.dataset.angle = angle;
   glitter.dataset.radius = radius;
-  glitter.dataset.speed = 0.002 + Math.random() * 0.003;
+  glitter.dataset.speed = 0.005 + Math.random() * 0.007; // mais rápido
 
   glitter.style.left = (centerX + radius * Math.cos(angle)) + 'px';
   glitter.style.top = (centerY + radius * Math.sin(angle)) + 'px';
@@ -91,8 +91,8 @@ for (let i = 0; i < numCircle; i++) {
   body.appendChild(glitter);
 }
 
-// Partículas subindo tipo glitter
-const numUp = 80;
+// Partículas subindo tipo glitter por todo o body
+const numUp = 150;
 for (let i = 0; i < numUp; i++) {
   const glitter = document.createElement('div');
   glitter.classList.add('glitter', 'glitter-up');
@@ -102,10 +102,10 @@ for (let i = 0; i < numUp; i++) {
   glitter.style.height = size + 'px';
 
   glitter.style.left = Math.random() * window.innerWidth + 'px';
-  glitter.style.top = window.innerHeight + 'px';
+  glitter.style.top = Math.random() * window.innerHeight + 'px';
 
-  glitter.style.animationDuration = (4 + Math.random() * 5) + 's';
-  glitter.style.animationDelay = Math.random() * 6 + 's';
+  glitter.style.animationDuration = (2 + Math.random() * 2) + 's'; // mais rápido
+  glitter.style.animationDelay = Math.random() * 2 + 's';
 
   body.appendChild(glitter);
 }
