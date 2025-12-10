@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Convite Cinematográfico</title>
+<title></title>
 <style>
   html, body {
     margin: 0;
@@ -85,6 +85,11 @@
 
     // movimento curvo/espiral aleatório
     glitter.style.setProperty('--dx', (Math.random() - 0.5) * 150 + 'px');
+
+    document.querySelector('.carta').addEventListener('click', () => {
+  window.location.href = 'convite.html';
+});
+
 
     // delay aleatório
     glitter.style.animationDelay = Math.random() * 6 + 's';
