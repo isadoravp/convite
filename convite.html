@@ -221,9 +221,22 @@
     window.open("https://wa.me/5551992226662?text=Olá,%20confirmo%20minha%20presença%20no%20evento!", "_blank");
   }
 
-  document.getElementById('presentearIsadora').onclick = () => {
-    alert("Aqui você pode abrir uma janela com as informações de presente.");
-  }
+ document.getElementById('presentearIsadora').onclick = () => {
+  document.getElementById('modalPresentes').style.display = 'flex';
+}
+  
+  // Fechar sub-modais
+document.getElementById('closeDress').onclick = () => {
+  document.getElementById('modalDress').style.display = 'none';
+}
+  document.getElementById('closePresentes').onclick = () => {
+  document.getElementById('modalPresentes').style.display = 'none';
+}
+
+window.onclick = e => {
+  if(e.target === document.getElementById('modalDress')) document.getElementById('modalDress').style.display = 'none';
+  if(e.target === document.getElementById('modalPresentes')) document.getElementById('modalPresentes').style.display = 'none';
+}
 </script>
 
 </body>
