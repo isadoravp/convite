@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title></title>
+<title>Convite Cinematográfico - Página 1</title>
 <style>
   html, body {
     margin: 0;
@@ -16,6 +16,7 @@
     align-items: center;
     justify-content: center;
     position: relative;
+    cursor: pointer; /* indica que é clicável */
   }
 
   .carta {
@@ -65,37 +66,31 @@
   const numGlitters = 180;
   const body = document.body;
 
+  // Cria partículas
   for (let i = 0; i < numGlitters; i++) {
     const glitter = document.createElement('div');
     glitter.classList.add('glitter');
 
-    // tamanho menor para mobile
-    const size = 1 + Math.random() * 3;
+    const size = 1 + Math.random() * 3; // tamanho reduzido para mobile
     glitter.style.width = size + 'px';
     glitter.style.height = size + 'px';
 
-    // posição inicial aleatória
     glitter.style.left = Math.random() * 100 + '%';
     glitter.style.top = Math.random() * 100 + '%';
 
-    // animação aleatória
     glitter.style.animationDuration = (4 + Math.random() * 5) + 's';
     glitter.style.opacity = Math.random() * 0.6 + 0.3;
     glitter.style.transform = `scale(${0.4 + Math.random() * 0.6}) rotate(${Math.random()*360}deg)`;
-
-    // movimento curvo/espiral aleatório
     glitter.style.setProperty('--dx', (Math.random() - 0.5) * 150 + 'px');
-
-    document.querySelector('.carta').addEventListener('click', () => {
-  window.location.href = 'convite.html';
-});
-
-
-    // delay aleatório
     glitter.style.animationDelay = Math.random() * 6 + 's';
 
     body.appendChild(glitter);
   }
+
+  // Clique na carta leva para página dois
+  document.querySelector('.carta').addEventListener('click', () => {
+    window.location.href = 'convite.html';
+  });
 </script>
 
 </body>
