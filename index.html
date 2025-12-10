@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Convite Cinematográfico</title>
+<title>Convite Cinematográfico Final</title>
 <style>
   html, body {
     margin: 0;
@@ -55,30 +55,30 @@
     color: #f0e68c;
   }
 
-  /* Glitter cinematográfico */
+  /* Partículas mágicas */
   .glitter {
     position: absolute;
     border-radius: 50%;
     pointer-events: none;
     background: radial-gradient(circle, #f17ea1, #ffd700);
-    animation-name: floatCurve;
+    animation-name: floatSpiral;
     animation-iteration-count: infinite;
     animation-timing-function: ease-in-out;
     z-index: 3;
-    opacity: 0.8;
+    opacity: 0.7;
   }
 
-  @keyframes floatCurve {
+  @keyframes floatSpiral {
     0% {
       transform: translate(0,0) scale(1) rotate(0deg);
       opacity: 1;
     }
     50% {
-      transform: translate(calc(50px + var(--dx)), -200px) scale(0.5) rotate(180deg);
+      transform: translate(calc(var(--dx) + 30px), -150px) scale(0.5) rotate(180deg);
       opacity: 0.6;
     }
     100% {
-      transform: translate(calc(100px + var(--dx)), -400px) scale(0) rotate(360deg);
+      transform: translate(calc(var(--dx) + 60px), -300px) scale(0) rotate(360deg);
       opacity: 0;
     }
   }
@@ -94,15 +94,15 @@ Abrir no Canva
 </a>
 
 <script>
-  const numGlitters = 200; // partículas densas e cinematográficas
+  const numGlitters = 180; // partículas densas, mas menores
   const body = document.body;
 
   for (let i = 0; i < numGlitters; i++) {
     const glitter = document.createElement('div');
     glitter.classList.add('glitter');
 
-    // tamanho aleatório
-    const size = 2 + Math.random() * 6;
+    // tamanho menor para mobile
+    const size = 1 + Math.random() * 3; // 1px a 4px
     glitter.style.width = size + 'px';
     glitter.style.height = size + 'px';
 
@@ -112,13 +112,13 @@ Abrir no Canva
 
     // animação aleatória
     glitter.style.animationDuration = (4 + Math.random() * 5) + 's';
-    glitter.style.opacity = Math.random() * 0.8 + 0.2;
-    glitter.style.transform = `scale(${0.5 + Math.random()}) rotate(${Math.random()*360}deg)`;
+    glitter.style.opacity = Math.random() * 0.6 + 0.3;
+    glitter.style.transform = `scale(${0.4 + Math.random() * 0.6}) rotate(${Math.random()*360}deg)`;
 
-    // movimento curvo aleatório
-    glitter.style.setProperty('--dx', (Math.random() - 0.5) * 200 + 'px');
+    // movimento curvo/espiral aleatório
+    glitter.style.setProperty('--dx', (Math.random() - 0.5) * 150 + 'px');
 
-    // animação delay aleatório
+    // delay aleatório
     glitter.style.animationDelay = Math.random() * 6 + 's';
 
     body.appendChild(glitter);
