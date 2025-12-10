@@ -26,19 +26,18 @@ html, body {
   border-radius: 12px;
   box-shadow: 0 4px 20px rgba(0,0,0,0.3);
   position: relative;
-  z-index: 5; /* acima das partículas */
+  z-index: 5;
 }
 
 .glitter, .star, .petala {
   position: absolute;
-  border-radius: 50%;
   pointer-events: none;
   z-index: 2;
-  opacity: 0.7;
 }
 
-/* Partículas de Glitter */
+/* Glitter */
 .glitter {
+  border-radius: 50%;
   background: radial-gradient(circle, #f17ea1, #ffd700);
   animation-name: floatSpiral;
   animation-iteration-count: infinite;
@@ -49,9 +48,9 @@ html, body {
 .star {
   width: 2px;
   height: 2px;
+  border-radius: 50%;
   background: white;
   opacity: 0.8;
-  border-radius: 50%;
   animation-name: starTwinkle;
   animation-iteration-count: infinite;
 }
@@ -67,26 +66,20 @@ html, body {
   50% { opacity: 1; transform: scale(1.5); }
 }
 
-/* Pétalas / rosas voando */
+/* Pétalas */
 .petala {
   width: 15px;
   height: 15px;
-  background-image: url('assets/petala.png'); /* PNG transparente da pétala/rosa */
+  background-image: url('assets/petala.png');
   background-size: contain;
   background-repeat: no-repeat;
-  opacity: 0.9;
-  animation-name: petalaFly;
+  animation-name: floatSpiral;
   animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+  opacity: 0.9;
 }
 
-@keyframes petalaFly {
-  0% { transform: translate(0,0) rotate(0deg) scale(0.8); opacity: 0; }
-  10% { opacity: 1; }
-  50% { transform: translate(calc(var(--dx)+50px), -300px) rotate(180deg) scale(1); }
-  100% { transform: translate(calc(var(--dx)+100px), -600px) rotate(360deg) scale(0.5); opacity: 0; }
-}
-
-/* Botão de Informações */
+/* Botão de informações */
 .btn-modal {
   position: fixed;
   bottom: 20px;
@@ -212,12 +205,12 @@ for(let i=0; i<180; i++){
   const size = 1 + Math.random()*3;
   glitter.style.width = glitter.style.height = size+'px';
   glitter.style.left = Math.random()*100+'%';
-  glitter.style.top = '100%';
-  glitter.style.animationDuration = (4 + Math.random()*3)+'s';
-  glitter.style.opacity = 0.4 + Math.random()*0.6;
+  glitter.style.top = Math.random()*100+'%';
+  glitter.style.animationDuration = (4 + Math.random()*5)+'s';
+  glitter.style.opacity = Math.random()*0.6 + 0.3;
   glitter.style.transform = `scale(${0.4+Math.random()*0.6}) rotate(${Math.random()*360}deg)`;
-  glitter.style.setProperty('--dx', (Math.random()-0.5)*200+'px');
-  glitter.style.animationDelay = Math.random()*5+'s';
+  glitter.style.setProperty('--dx', (Math.random()-0.5)*150+'px');
+  glitter.style.animationDelay = Math.random()*6+'s';
   body.appendChild(glitter);
 }
 
@@ -232,14 +225,14 @@ for(let i=0;i<50;i++){
   body.appendChild(star);
 }
 
-// Pétalas/Rosas
+// Pétalas / rosas
 for(let i=0;i<30;i++){
   const petala = document.createElement('div');
   petala.classList.add('petala');
   petala.style.left = Math.random()*100+'%';
   petala.style.top = '100%';
   petala.style.animationDuration = (6 + Math.random()*4)+'s';
-  petala.style.setProperty('--dx', (Math.random()-0.5)*300+'px');
+  petala.style.setProperty('--dx', (Math.random()-0.5)*200+'px');
   body.appendChild(petala);
 }
 
