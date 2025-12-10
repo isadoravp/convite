@@ -13,24 +13,25 @@
       font-family: 'Arial', sans-serif;
       overflow: hidden;
       background: radial-gradient(circle at 50% 50%, #ffc900, rgba(168, 51, 33, 0.3), #00498e);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
     }
 
-    body::before {
-      content: '';
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: url('assets/carta.png') no-repeat center center;
-      background-size: cover;
-      z-index: -1; /* envia para trás */
+    /* Carta centralizada com limite de tamanho */
+    .carta {
+      max-width: 90%;
+      max-height: 90%;
+      object-fit: contain; /* mantém proporção */
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      border-radius: 12px;
     }
 
     h1 {
       color: #fff;
       text-align: center;
-      margin-top: 2em;
+      margin-bottom: 1em;
       text-shadow: 0 2px 5px rgba(0,0,0,0.4);
     }
 
@@ -50,6 +51,12 @@
   </style>
 </head>
 <body>
- 
+  <h1>Convite de 15 anos</h1>
+
+  <img class="carta" src="assets/carta.png" alt="Carta de convite">
+
+  <a class="link-canva" href="https://www.canva.com/design/DAG7DM2hqyw/lbjoWEo7P_eHs9Mra1gu2g/view?utm_content=DAG7DM2hqyw&utm_campaign=designshare&utm_medium=embeds&utm_source=link" target="_blank" rel="noopener">
+    Abrir no Canva
+  </a>
 </body>
 </html>
